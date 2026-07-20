@@ -4,9 +4,11 @@
 /Xodex
 ├── iso/                  # Debian ISO build configuration
 │   ├── config/           # Live build configs
+│   ├── packages/         # Package configurations
 │   └── hooks/            # Customization scripts
 │
 ├── core/                 # Core system components
+│   ├── system/           # Core system files
 │   ├── config/           # System configurations
 │   └── scripts/          # Core utilities
 │
@@ -16,9 +18,14 @@
 │
 ├── library/              # Reference materials
 │   ├── books/            # Book references
-│   └── references/       # External links
+│   ├── references/       # External references
+│   └── links/            # Online resource links
 │
-├── courses/              # Optional learning paths
+├── modules/              # Optional modules
+│   ├── c/                # C programming
+│   ├── python/           # Python programming
+│   ├── rust/             # Rust programming
+│   └── linux/            # Linux internals
 │
 ├── examples/             # Example code
 │

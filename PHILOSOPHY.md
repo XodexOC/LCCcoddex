@@ -36,6 +36,24 @@
 - Encourage self-directed learning
 - Maintain professional engineering approach
 
+## Xodex Identity
+
+Xodex is not an operating system replacement.
+Xodex is an educational environment built on Debian GNU/Linux.
+
+The main goal:
+Not to hide the complexity of computers, but to gradually reveal it to the user.
+
+### From User to Engineer
+
+The user's path:
+1. Terminal basics
+2. Filesystem understanding
+3. Process management
+4. Programming fundamentals
+5. Systems programming
+6. Kernel exploration
+
 ## The Xodex Learning Cycle
 1. Read documentation
 2. Examine examples

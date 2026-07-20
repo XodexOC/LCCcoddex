@@ -5,6 +5,17 @@
 - Repository structure
 - Core philosophy
 
+## v0.15 Repository Foundation
+- Git repository structure
+- Material storage rules
+- Documentation format
+- Translation system
+
+## v0.2 Core ISO
+- Architectural documentation
+- Repository structure
+- Core philosophy
+
 ## v0.2 Core ISO
 - Minimal Debian live image
 - Terminal environment setup

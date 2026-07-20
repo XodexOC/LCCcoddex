@@ -44,3 +44,28 @@
 - Core updates via Debian repos
 - Documentation updates via git
 - Module management via `xodex` tool
+
+## Offline First Principle
+
+Available without internet:
+- Core documentation
+- System manuals
+- Examples
+- Basic tools
+
+Internet used for:
+- Material updates
+- External books
+- Official documentation
+- Additional modules
+
+## User Profile
+
+User information stored in:
+~/.xodex/
+
+Contains:
+- Bookmarks
+- Reading progress
+- Notes
+- Preferences
