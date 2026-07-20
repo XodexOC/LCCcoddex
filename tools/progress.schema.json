@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xodex.local/schemas/progress.json",
+  "title": "Xodex student progress",
+  "type": "object",
+  "required": ["username", "language", "bookmarks", "lessons_completed", "settings"],
+  "properties": {
+    "username": { "type": "string" },
+    "language": { "type": "string", "enum": ["ru", "en"] },
+    "bookmarks": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "page": { "type": "integer", "minimum": 0 },
+          "timestamp": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    "lessons_completed": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "settings": {
+      "type": "object",
+      "properties": {
+        "theme": { "type": "string", "enum": ["dark", "light"] },
+        "last_opened": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

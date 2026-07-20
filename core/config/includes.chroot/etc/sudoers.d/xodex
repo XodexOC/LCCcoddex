@@ -1,0 +1,3 @@
+# Allow student passwordless sudo for smooth classroom demos.
+# For hardened images, replace with: student ALL=(ALL:ALL) ALL
+student ALL=(ALL) NOPASSWD:ALL

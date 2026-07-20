@@ -1,0 +1,45 @@
+# Xodex developer stack — keep lean for 1–2 GB ISO goal
+
+# C / C++
+build-essential
+gcc
+g++
+make
+gdb
+strace
+ltrace
+valgrind
+binutils
+libc6-dev
+
+# Assembler
+nasm
+
+# Python
+python3
+python3-pip
+python3-venv
+python3-pytest
+
+# Rust (system packages; large — review if size exceeds budget)
+rustc
+cargo
+
+# SQL
+sqlite3
+libsqlite3-dev
+postgresql-client
+
+# VCS & build helpers
+git
+pkg-config
+cmake
+
+# Optional later (commented to control ISO size):
+# clang
+# lld
+# lldb
+# nodejs
+# npm
+# default-jdk
+# docker.io
