@@ -21,23 +21,11 @@ Reasons:
 - Environment helper functions
 - Context-aware prompts
 
-## 3. Terminal Appearance
-### Theme System
-Location: `~/.xodex/theme/`
-
-**Dark Theme (default)**
-- Primary working environment
-- Eye-friendly colors
-- Optimal for long sessions
-
-**Light Theme**
-- Alternative option
-- Good for bright environments
-
-Theme includes:
-- Terminal colors
-- Prompt styling
-- Syntax highlighting
+## 3. Terminal Basics
+- Monospace font only
+- Single color scheme (dark background)
+- No theme switching
+- Minimal prompt customization
 
 ## 4. Code Experience
 ### Core Tools:

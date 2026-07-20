@@ -91,13 +91,11 @@ Reference types:
 - **Standards**: POSIX, ISO C etc.
 - **Source Code**: Linux kernel references
 
-## 7. Navigation Design
-Planned CLI interface:
+## 7. Documentation Access
+Basic CLI viewer:
 ```bash
-xodex docs show memory          # View topic
-xodex docs path pointers        # Show learning path
-xodex docs relate fork          # Show related topics
-xodex docs source malloc        # View implementation
+xodex docs memory          # View topic
+xodex docs --list          # List available topics
 ```
 
 ## 8. Metadata Standard

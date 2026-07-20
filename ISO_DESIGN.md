@@ -54,29 +54,22 @@ Recommended:
 
 ## 4. Package Philosophy
 
-### Essential Packages
+### Core Packages (Required)
 - linux-image
 - systemd
 - bash
 - coreutils
-- less
 - nano
 - man-db
+- less
 
-### Development Packages
+### Module Packages (Optional)
 - gcc
 - make
 - binutils
 - gdb
 - strace
-- ltrace
-
-### Research Packages
 - procps
-- lsof
-- htop
-- file
-- hexdump
 
 Each package must:
 - Serve clear educational purpose
