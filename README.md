@@ -7,7 +7,7 @@ Educational terminal-first Debian Live environment. Learn real UNIX: C/C++, Pyth
 | | |
 |---|---|
 | **Interface** | Console only (no GUI) |
-| **User** | `student` with sudo; root via `sudo` only |
+| **User** | login `xodex` / password `xodex` (sudo) |
 | **Target size** | ~1–2 GB Live ISO |
 | **Base** | Debian Bookworm + live-boot / live-config |
 | **Languages** | Russian + English materials |

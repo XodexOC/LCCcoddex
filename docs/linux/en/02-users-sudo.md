@@ -13,11 +13,11 @@
 UID/GID, /etc/passwd, groups, sudo model. Why not daily root.
 
 ### Least privilege
-Daily work as `student`. Elevate only for admin tasks. Xodex Live uses passwordless sudo for classroom speed — production servers should not.
+Daily work as `xodex`. Elevate only for admin tasks. Xodex Live uses passwordless sudo for classroom speed — production servers should not.
 
 ## Practice
 
-As student, run a command with sudo and inspect /etc/sudoers.d/xodex.
+As xodex, run a command with sudo and inspect /etc/sudoers.d/xodex.
 
 **Live paths:**
 - Examples: `/usr/local/xodex/examples/c`

@@ -37,7 +37,7 @@ _xodex_prompt() {
   bat=$(_xodex_battery)
   net=$(_xodex_net)
   now=$(date +%H:%M 2>/dev/null || echo '--:--')
-  PS1="\[${c_user}\][student@xodex \W]\[${c_reset}\] \[${c_stat}\]${net} ${bat} ${now}\[${c_reset}\]\$ "
+  PS1="\[${c_user}\][xodex@xodex \W]\[${c_reset}\] \[${c_stat}\]${net} ${bat} ${now}\[${c_reset}\]\$ "
 }
 
 PROMPT_COMMAND=_xodex_prompt

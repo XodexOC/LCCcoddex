@@ -26,7 +26,7 @@ All installs should prefer `--no-install-recommends` (set in `build-xodex.sh` vi
 
 ## User model
 
-- User: `student` (sudo)
+- User: `xodex` (sudo)
 - Root password: locked / not set for login
 - Optional autologin on tty1 via systemd drop-in
 

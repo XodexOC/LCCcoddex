@@ -13,11 +13,11 @@
 UID/GID, /etc/passwd, группы, sudo. Почему не жить под root.
 
 ### Минимальные привилегии
-Работаешь как `student`, `sudo` — точечно. В Xodex Live sudo без пароля для удобства класса.
+Работаешь как `xodex`, `sudo` — точечно. В Xodex Live sudo без пароля для удобства класса.
 
 ## Практика
 
-Под student выполни sudo и посмотри /etc/sudoers.d/xodex.
+Под xodex выполни sudo и посмотри /etc/sudoers.d/xodex.
 
 **Live paths:**
 - Examples: `/usr/local/xodex/examples/c`

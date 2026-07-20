@@ -9,7 +9,7 @@ mkdir -p "${HOME}/.xodex"
 if [ ! -f "${PROGRESS}" ]; then
   cat > "${PROGRESS}" <<'EOF'
 {
-  "username": "student",
+  "username": "xodex",
   "language": "ru",
   "bookmarks": {},
   "lessons_completed": [],

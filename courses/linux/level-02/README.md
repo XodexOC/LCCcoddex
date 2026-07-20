@@ -5,11 +5,11 @@
 
 ## Task (EN)
 
-As student, run a command with sudo and inspect /etc/sudoers.d/xodex.
+As xodex, run a command with sudo and inspect /etc/sudoers.d/xodex.
 
 ## Задание (RU)
 
-Под student выполни sudo и посмотри /etc/sudoers.d/xodex.
+Под xodex выполни sudo и посмотри /etc/sudoers.d/xodex.
 
 ## Workflow
 

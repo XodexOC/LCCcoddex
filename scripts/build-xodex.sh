@@ -63,7 +63,7 @@ prepare_workspace() {
     --iso-publisher "XodexOC https://github.com/XodexOC/XodexOC" \
     --iso-volume "XODEX" \
     --image-name "${IMAGE_NAME}" \
-    --bootappend-live "boot=live components hostname=xodex username=student locales=ru_RU.UTF-8,en_US.UTF-8 keyboard-layouts=us,ru timezone=UTC" \
+    --bootappend-live "boot=live components hostname=xodex username=xodex locales=ru_RU.UTF-8,en_US.UTF-8 keyboard-layouts=us,ru timezone=UTC" \
     --binary-images iso-hybrid \
     --win32-loader false
 }
