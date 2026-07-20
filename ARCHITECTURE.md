@@ -1,0 +1,47 @@
+# Xodex Architecture
+
+## Core Components
+
+### Xodex Core
+- Minimal Debian-based system
+- Terminal environment with:
+  - Basic development tools
+  - System exploration utilities
+  - Documentation browser
+
+### ISO Builder
+- Debian live image configuration
+- Package selection:
+  - Base system
+  - Development tools
+  - Documentation tools
+- Custom hooks for:
+  - User environment setup
+  - Default configurations
+
+### Documentation System
+- Local materials:
+  - Fundamental concepts
+  - Examples
+  - How-to guides
+- Online references:
+  - Man pages
+  - Official docs
+  - External books
+- Bilingual structure (RU/EN)
+- Knowledge graph navigation
+
+### External Repository
+- Optional components:
+  - Additional languages
+  - Specialized tools
+  - Extended documentation
+- Installable via `xodex install`
+
+## Design Constraints
+1. No GUI dependencies in Core
+2. All documentation accessible via CLI
+3. No mandatory components beyond Core
+4. Clear separation between:
+   - System fundamentals
+   - Optional additions
