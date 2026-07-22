@@ -1,0 +1,16 @@
+#!/bin/bash
+# Shrink the image: drop apt caches and temporary files.
+set -euo pipefail
+
+export DEBIAN_FRONTEND=noninteractive
+
+apt-get clean || true
+rm -rf /var/lib/apt/lists/* || true
+rm -rf /tmp/* /var/tmp/* || true
+rm -f /var/cache/apt/archives/*.deb || true
+
+# Drop machine-id for unique first boot
+truncate -s 0 /etc/machine-id 2>/dev/null || true
+rm -f /var/lib/dbus/machine-id 2>/dev/null || true
+
+echo "Xodex: chroot cleanup done."

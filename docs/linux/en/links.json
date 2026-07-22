@@ -1,0 +1,7 @@
+{
+  "track": "linux",
+  "language": "en",
+  "resources": {
+    "primary": "https://www.kernel.org/doc/man-pages/"
+  }
+}

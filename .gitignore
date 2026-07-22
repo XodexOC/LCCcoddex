@@ -1,0 +1,55 @@
+# Build artifacts
+build/
+*.iso
+*.img
+*.squashfs
+cache/
+chroot/
+.lb/
+
+# live-build output
+binary/
+binary.iso
+binary.hybrid.iso
+binary.contents
+binary.packages
+binary.packages.live
+binary.log
+chroot.packages.live
+chroot.packages.install
+.stage/
+.lock
+cache/
+
+# Editor / OS
+*~
+*.swp
+*.swo
+.DS_Store
+.idea/
+.vscode/
+*.tmp
+
+# User progress (runtime)
+**/.xodex/
+**/progress.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Rust
+target/
+
+# Node (if any later)
+node_modules/
+
+# Secrets
+*.pem
+id_rsa*
+*.key
+.env
+.env.*
+.aider*

@@ -1,0 +1,41 @@
+#!/bin/bash
+# Create user xodex with sudo; lock root password login.
+set -euo pipefail
+
+USERNAME="xodex"
+PASSWORD="xodex"
+
+if ! id -u "${USERNAME}" >/dev/null 2>&1; then
+  adduser --disabled-password --gecos "Xodex" "${USERNAME}"
+fi
+
+echo "${USERNAME}:${PASSWORD}" | chpasswd
+usermod -aG sudo "${USERNAME}"
+
+# Root: no password login (use sudo from xodex)
+passwd -l root || true
+
+install -d -o "${USERNAME}" -g "${USERNAME}" -m 0755 "/home/${USERNAME}"
+install -d -o "${USERNAME}" -g "${USERNAME}" -m 0700 "/home/${USERNAME}/.xodex"
+
+if [ ! -f "/home/${USERNAME}/.xodex/progress.json" ]; then
+  cat > "/home/${USERNAME}/.xodex/progress.json" <<'JSON'
+{
+  "username": "xodex",
+  "language": "ru",
+  "bookmarks": {},
+  "lessons_completed": [],
+  "settings": {
+    "theme": "dark",
+    "last_opened": null
+  }
+}
+JSON
+  chown "${USERNAME}:${USERNAME}" "/home/${USERNAME}/.xodex/progress.json"
+fi
+
+if [ -f /etc/sudoers.d/xodex ]; then
+  chmod 0440 /etc/sudoers.d/xodex
+fi
+
+echo "Xodex: user ${USERNAME} ready (login/password: xodex / xodex)."

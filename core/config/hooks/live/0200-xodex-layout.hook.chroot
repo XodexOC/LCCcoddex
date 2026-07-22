@@ -1,0 +1,37 @@
+#!/bin/bash
+# Ensure /usr/local/xodex layout and permissions after includes are copied.
+set -euo pipefail
+
+XODEX_ROOT="/usr/local/xodex"
+install -d -m 0755 "${XODEX_ROOT}"
+install -d -m 0755 "${XODEX_ROOT}/docs"
+install -d -m 0755 "${XODEX_ROOT}/examples"
+install -d -m 0755 "${XODEX_ROOT}/courses"
+install -d -m 0755 "${XODEX_ROOT}/tools"
+
+# Make helper scripts executable if present
+if [ -d /usr/local/bin ]; then
+  find /usr/local/bin -maxdepth 1 -type f -name 'xodex*' -exec chmod 0755 {} +
+fi
+
+# Symlink convenience
+if [ ! -e /xodex ]; then
+  ln -s "${XODEX_ROOT}" /xodex
+fi
+
+# Locale defaults friendly to RU + EN learners
+if [ -f /etc/locale.gen ]; then
+  sed -i 's/^# *en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen || true
+  sed -i 's/^# *ru_RU.UTF-8 UTF-8/ru_RU.UTF-8 UTF-8/' /etc/locale.gen || true
+  locale-gen || true
+fi
+
+# Default LANG (overrideable by student)
+if [ ! -f /etc/default/locale ]; then
+  cat > /etc/default/locale <<'EOF'
+LANG=ru_RU.UTF-8
+LC_ALL=ru_RU.UTF-8
+EOF
+fi
+
+echo "Xodex: layout ready at ${XODEX_ROOT}"

@@ -1,0 +1,7 @@
+{
+  "track": "sql",
+  "language": "en",
+  "resources": {
+    "primary": "https://www.sqlite.org/docs.html"
+  }
+}

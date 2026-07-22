@@ -1,0 +1,3 @@
+#!/bin/sh
+echo "========== XODEX TEST HOOK WORKS =========="
+touch /root/hook-worked

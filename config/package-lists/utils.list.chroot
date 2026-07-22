@@ -1,0 +1,29 @@
+# Comfort utilities for terminal-first learning UX
+
+# Editors
+vim
+neovim
+nano
+
+# Multiplexer & file manager
+tmux
+mc
+
+# Process / disk
+htop
+btop
+ncdu
+tree
+
+# Text browser (online docs via links.json)
+w3m
+
+# Modern-ish CLI helpers available in Debian
+fzf
+ripgrep
+fd-find
+jq
+
+# Fonts for readable console (Terminus)
+console-setup
+fonts-terminus

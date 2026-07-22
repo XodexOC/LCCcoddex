@@ -1,0 +1,7 @@
+{
+  "track": "rust",
+  "language": "en",
+  "resources": {
+    "primary": "https://doc.rust-lang.org/book/"
+  }
+}

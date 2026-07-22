@@ -1,0 +1,3 @@
+# Live classroom: passwordless sudo for user xodex.
+# Hardened images: xodex ALL=(ALL:ALL) ALL
+xodex ALL=(ALL) NOPASSWD:ALL
