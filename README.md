@@ -1,101 +1,321 @@
-# Xodex
+<div align="center">
 
-**EN** | [RU](README.ru.md)
+# ⚡ Xodex
 
-Educational terminal-first Debian Live environment. Learn real UNIX: C/C++, Python, Rust, SQL, and Linux systems thinking — through exploration, documentation, and practice.
+### Терминал — это твой новый лучший друг
 
-| | |
+**Образовательный Linux, в котором ты реально учишься программировать,**
+**а не тыкаешь на кнопочки в непонятном IDE.**
+
+[![Build](https://img.shields.io/badge/build-live--build-blue?style=for-the-badge)]()
+[![Base](https://img.shields.io/badge/base-Debian-red?style=for-the-badge)]()
+[![License](https://img.shields.io/badge/license-MIT-brightgreen?style=for-the-badge)]()
+[![Made with](https://img.shields.io/badge/made%20with-🖤%20and%20terminal-black?style=for-the-badge)]()
+
+**EN** · [RU](README.ru.md)
+
+[Скачать ISO](#-скачать) · [Фичи](#-что-внутри) · [Курсы](#-чему-ты-научишься) · [Сборка](#️-собери-сам) · [Роадмап](#-роадмап)
+
+</div>
+
+---
+
+## 🧠 Что такое Xodex
+
+Xodex — это Live-дистрибутив на базе Debian, который создан не для того, чтобы «работать», а для того, чтобы **учить**.
+
+Никаких десктопных сред. Никакого «нажми сюда, и всё само заработает». Только ты, чёрный экран и понимание того, что реально происходит под капотом.
+
+> Большинство туториалов учат тебя **писать код**.
+> Xodex учит тебя **понимать, почему этот код работает**.
+
+Здесь ты разберёшься:
+
+- 🖥️ как операционная система устроена изнутри
+- ⚙️ как программа превращается в исполняемый файл и запускается
+- 🧩 как выделяется и освобождается память
+- 🔧 как работает компилятор
+- 🛠️ как вообще пишутся инструменты, которыми пользуются разработчики
+
+Всё это — не разрозненные статьи, а собранная в одном месте система: курсы, документация, примеры кода и практические задачи.
+
+---
+
+## 🚀 Скачать
+
+### Последний релиз
+
+➡️ **[github.com/XodexOC/LCCcoddex/releases](https://github.com/XodexOC/LCCcoddex/releases)**
+
+Системные требования — по-честному минимальные:
+
+| Параметр | Требование |
 |---|---|
-| **Interface** | Console only (no GUI) |
-| **User** | login `xodex` / password `xodex` (sudo) |
-| **Target size** | ~1–2 GB Live ISO |
-| **Base** | Debian Bookworm + live-boot / live-config |
-| **Languages** | Russian + English materials |
+| 💾 RAM | от 2 ГБ |
+| 💿 Диск | от 10 ГБ |
+| 🏗️ Архитектура | x86_64 |
 
-## Repository layout (monorepo)
+Записал на флешку (или запустил в QEMU/VirtualBox) — и уже внутри терминала, готового учить тебя.
 
-```text
-Xodex/
-├── core/           # live-build config, hooks, package lists, chroot includes
-├── docs/           # bilingual lessons (levels 0–10)
-├── examples/       # ready-to-compile sample projects
-├── courses/        # labs with tasks + test.sh
-├── tools/          # shell UX: menu, prompt, progress schema
-├── scripts/        # build-xodex.sh and helpers
-├── Xodex_readme.md # full technical specification (RU)
-└── README.md       # this file
+---
+
+## 🔥 Что внутри
+
+### Terminal-first — и это осознанный выбор
+
+Никаких лишних графических прослоек между тобой и системой. Ты работаешь напрямую с:
+
+- 🐚 shell
+- 🧱 компиляторами
+- 🐛 отладчиками
+- 🧰 системными утилитами
+- ✍️ текстовыми редакторами
+
+Это ровно та же среда, в которой каждый день живут профессиональные системные разработчики. Освоил её здесь — будешь чувствовать себя как дома в любом продакшн-окружении.
+
+### 👨‍💻 Языки программирования
+
+| Язык | На чём фокус |
+|---|---|
+| **C** | Память, указатели, компиляция, системное программирование |
+| **C++** | Нативная разработка и ООП |
+| **Python** | Основы программирования и автоматизация |
+| **Rust** | Современное безопасное системное программирование |
+| **SQL** | Базы данных и работа с данными |
+
+### 🐧 Linux-системы
+
+Отдельный трек — про сам Linux:
+
+- структура файловой системы
+- пользователи и права доступа
+- процессы и службы
+- сети
+- shell-скрипты
+- управление пакетами
+- архитектура системы в целом
+
+---
+
+## 📚 Чему ты научишься
+
+Xodex — это не набор случайных упражнений, а встроенная **учебная платформа** со сквозной структурой уровней:
+
+```
+Level 0 → Level 1 → Level 2 → ... → Level 10
 ```
 
-## Quick start (build ISO)
+Каждый уровень — это законченный блок:
 
-> Requires Debian/Ubuntu host with root, ~10 GB free disk, and packages listed in `scripts/build-xodex.sh`.
+- 📖 теория
+- 💡 примеры
+- ✏️ упражнения
+- ✅ тесты на закрепление
+
+```
+courses/
+├── c/
+│   ├── level-00
+│   ├── level-01
+│   └── ...
+├── python/
+├── rust/
+├── linux/
+└── sql/
+```
+
+Твой прогресс сохраняется локально — никаких аккаунтов и облаков:
+
+```
+~/.xodex/progress.json
+```
+
+```json
+{
+  "python": {
+    "level": 3,
+    "completed": true
+  }
+}
+```
+
+---
+
+## 🗂️ Структура репозитория
+
+```
+Xodex/
+├── core/              # Конфигурация Debian Live
+├── courses/           # Интерактивные упражнения по программированию
+├── docs/              # Учебная документация
+├── examples/          # Примеры программ
+├── tools/             # Терминальные утилиты
+├── scripts/           # Автоматизация сборки
+└── Xodex_readme.md    # Полная техническая спецификация
+```
+
+Внутри самой системы всё лежит здесь:
+
+```
+/usr/local/xodex/
+├── docs/
+├── courses/
+├── examples/
+├── tools/
+└── progress
+```
+
+Запуск главного меню — одной командой:
 
 ```bash
-# Install build dependencies (Debian/Ubuntu)
-sudo apt update
-sudo apt install -y live-build debootstrap squashfs-tools xorriso \
-  grub-pc-bin grub-efi-amd64-bin mtools isolinux syslinux-common
+xodex-menu
+```
 
-# Configure and build
-cd /path/to/Xodex
+---
+
+## 🛠️ Собери сам
+
+Xodex полностью воспроизводим благодаря Debian `live-build` — никакой магии, весь процесс прозрачен и открыт.
+
+### Требования к хост-системе
+
+- Debian
+- Ubuntu
+- Linux Mint
+
+### Установка зависимостей
+
+```bash
+sudo apt update
+
+sudo apt install \
+  live-build \
+  debootstrap \
+  squashfs-tools \
+  xorriso \
+  grub-pc-bin \
+  grub-efi-amd64-bin \
+  mtools \
+  isolinux \
+  syslinux-common
+```
+
+### Клонирование и сборка
+
+```bash
+git clone https://github.com/XodexOC/LCCcoddex.git
+cd LCCcoddex
+
 sudo ./scripts/build-xodex.sh
 ```
 
-Output ISO path: `build/xodex-live-amd64.hybrid.iso` (exact name may vary with live-build).
+Результат сборки:
 
-Test in QEMU:
-
-```bash
-qemu-system-x86_64 -m 2048 -cdrom build/*.hybrid.iso -boot d
-# UEFI (optional):
-# qemu-system-x86_64 -m 2048 -bios /usr/share/OVMF/OVMF_CODE.fd -cdrom build/*.hybrid.iso
+```
+build/
+└── xodex-live-amd64.iso
 ```
 
-## Curriculum tracks (0 → 10)
+### 🧪 Тестирование в QEMU
 
-Each track goes from absolute beginner (**0**) to confident intermediate/advanced (**10**).
-
-| Track | Path | Focus |
-|-------|------|--------|
-| C | `docs/c/`, `courses/c/` | Memory, pointers, toolchain |
-| Python | `docs/python/`, `courses/python/` | Language + tooling |
-| Linux | `docs/linux/`, `courses/linux/` | Processes, FS, shell, networking |
-| Rust | `docs/rust/`, `courses/rust/` | Ownership, safe systems code |
-| SQL | `docs/sql/`, `courses/sql/` | SQLite-first data literacy |
-
-In the Live system materials live under `/usr/local/xodex/`.
+BIOS-режим:
 
 ```bash
-xodex-menu          # interactive menu
-ls /usr/local/xodex/docs
+qemu-system-x86_64 \
+  -m 2048 \
+  -cdrom build/*.iso \
+  -boot d
 ```
 
-Progress (bookmarks, completed lessons) is stored in `~/.xodex/progress.json`.
+UEFI-режим:
 
-## Design goals
+```bash
+qemu-system-x86_64 \
+  -m 2048 \
+  -bios /usr/share/OVMF/OVMF_CODE.fd \
+  -cdrom build/*.iso
+```
 
-- University-style systems thinking, not click-through tutorials
-- Offline core (docs + examples + compilers on ISO)
-- Online extras via links and optional `git` sync later
-- Rebuildable, auditable Debian Live image
+> 💡 Хочешь, чтобы ISO собиралась и публиковалась автоматически при каждом релизе? Смотри секцию [CI/CD](#-автосборка-через-github-actions) ниже — там уже готовый workflow.
 
-Full architecture, package tables, and milestones: see **[Xodex_readme.md](Xodex_readme.md)** (Russian specification).
+---
 
-## Status
+## 🧭 Философия
 
-- [x] Monorepo scaffold
-- [x] live-build core + package lists + hooks
-- [x] Full bilingual curriculum structure 0–10
-- [ ] First bootable ISO verified in QEMU (after maintainer approval)
-- [ ] GitHub Releases with ISO artifacts
+### Пойми машину, а не запомни заклинание
 
-## License
+```
+Основы программирования
+         ↓
+   Структуры данных
+         ↓
+  Управление памятью
+         ↓
+  Операционные системы
+         ↓
+Системное программирование
+         ↓
+  Software Engineering
+```
 
-MIT — see [LICENSE](LICENSE).
+Xodex ведёт тебя по этому пути осознанно, шаг за шагом — от «я написал Hello World» до «я понимаю, что происходит на каждом уровне стека».
 
-## Contributing
+---
 
-1. Prefer small, reviewable commits.
-2. Keep lessons bilingual (`ru/` + `en/`).
-3. Do not add GUI packages to the default image.
-4. Test package-list changes with a full rebuild when possible.
+## 🗺️ Роадмап
+
+### ✅ Фаза 1 — Фундамент (завершена)
+
+- [x] База на Debian Live
+- [x] Структура репозитория
+- [x] Фреймворк курсов
+- [x] Система документации
+- [x] Скрипты сборки
+
+### 🔄 Фаза 2 — Первый релиз (в процессе)
+
+- [ ] Стабильная сборка ISO
+- [ ] Валидация через QEMU
+- [ ] GitHub Releases
+- [ ] Гайд по установке
+
+### 🌱 Фаза 3 — Расширение (план)
+
+- [ ] Курс C++
+- [ ] Курс Assembly
+- [ ] Архитектура компьютера
+- [ ] Построение компиляторов
+- [ ] Курс по сетям
+
+---
+
+## 🤝 Contributing
+
+Контрибьюции приветствуются! Несколько простых правил:
+
+- держи коммиты сфокусированными на одной задаче
+- документируй изменения
+- держи уроки практичными, без воды
+- избегай лишних GUI-зависимостей — это terminal-first проект
+
+---
+
+## 📄 Лицензия
+
+MIT License — подробности в [LICENSE](LICENSE).
+
+---
+
+## 🔗 Ссылки
+
+| | |
+|---|---|
+| 📦 Репозиторий | [github.com/XodexOC/LCCcoddex](https://github.com/XodexOC/LCCcoddex) |
+| ⬇️ Загрузки | [github.com/XodexOC/LCCcoddex/releases](https://github.com/XodexOC/LCCcoddex/releases) |
+| 📖 Документация | [github.com/XodexOC/LCCcoddex/tree/main/docs](https://github.com/XodexOC/LCCcoddex/tree/main/docs) |
+
+<div align="center">
+
+**Xodex — учи систему, а не запоминай кнопки.**
+
+</div>
