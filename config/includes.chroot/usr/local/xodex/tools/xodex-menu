@@ -66,7 +66,7 @@ main_menu() {
   banner
   echo "  HOME=${XODEX_HOME}   lang=${lang}"
   echo
-  echo "  1) Docs (lessons 0–10)"
+  echo "  1) Browse docs (xodex-docs)"
   echo "  2) Examples"
   echo "  3) Courses / labs"
   echo "  4) Quick start: Hello C"
@@ -79,7 +79,7 @@ main_menu() {
   read -r -p "Choice: " choice
   case "${choice}" in
     1)
-      open_path "${XODEX_HOME}/docs"
+      xodex-docs
       read -r -p "Enter to continue..." _
       ;;
     2)
