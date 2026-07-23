@@ -1,11 +1,18 @@
 # Build artifacts
 build/
+.build/
 *.iso
 *.img
 *.squashfs
 cache/
 chroot/
 .lb/
+
+# Logs & temp
+build.log
+trace.log
+chroot.headers
+wget-log*
 
 # live-build output
 binary/
