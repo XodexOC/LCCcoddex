@@ -2,7 +2,7 @@
 
 set -e
 
-PROJECT="$HOME/Загрузки/LCCcoddex-main"
+PROJECT="$HOME/Загрузки/LCCcoddex"
 
 cd "$PROJECT"
 
