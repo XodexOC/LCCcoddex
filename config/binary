@@ -43,7 +43,7 @@ LB_ZSYNC="true"
 # ${LB_BUILD_WITH_CHROOT: control if we build binary images chrooted
 # (Default: true)
 # DO NEVER, *NEVER*, *N*E*V*E*R* SET THIS OPTION to false.
-LB_BUILD_WITH_CHROOT="false"
+LB_BUILD_WITH_CHROOT="true"
 
 # $LB_DEBIAN_INSTALLER: set debian-installer
 # (Default: false)
