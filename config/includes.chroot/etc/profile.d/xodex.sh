@@ -8,7 +8,7 @@ if [ -n "${PS1:-}" ]; then
     # shellcheck source=/dev/null
     . /usr/local/xodex/tools/prompt.sh
   else
-    PS1='\[\e[1;32m\][xodex@xodex \W]\$\[\e[0m\] '
+    PS1='\[\e[1;32m\]xodex@xodex \w~@;\[\e[0m\] '
   fi
 fi
 

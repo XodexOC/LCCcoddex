@@ -1,0 +1,5 @@
+#!/bin/sh
+# Fix missing start-stop-daemon in chroot (live-build bookworm workaround)
+if [ ! -f /sbin/start-stop-daemon ] && [ -f /bin/true ]; then
+  cp /bin/true /sbin/start-stop-daemon
+fi

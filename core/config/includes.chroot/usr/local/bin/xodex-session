@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+setfont ter-132n 2>/dev/null || true
+tput civis 2>/dev/null || true
+
+clear
+echo "  XODEX OC — загрузка системы..."
+sleep 0.3
+
+/usr/local/bin/xodex-login
+exec /usr/local/bin/xodex-menu

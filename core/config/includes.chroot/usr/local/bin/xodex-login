@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+# Экран входа Xodex — визуальный TUI login
+# Запускается xodex-session от пользователя xodex на tty1
+
+MAX_ATTEMPTS=5
+attempt=0
+
+while [ "${attempt}" -lt "${MAX_ATTEMPTS}" ]; do
+  clear
+
+  whiptail --title "XODEX OC" --msgbox "
+        ██╗  ██╗ ██████╗ ██████╗
+        ╚██╗██╔╝██╔═══██╗██╔══██╗
+         ╚███╔╝ ██║   ██║██║  ██║
+         ██╔██╗ ██║   ██║██║  ██║
+        ██╔╝ ██╗╚██████╔╝██║  ██║
+        ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝
+
+          XODEX OC v1.0
+
+    Образовательная Debian Live
+
+    Нажмите Enter для входа..." 18 60
+
+  USERNAME=$(whiptail --title "XODEX OC — Вход" --inputbox "Имя пользователя:" 8 50 "xodex" 3>&1 1>&2 2>&3) || continue
+  [ -z "${USERNAME}" ] && USERNAME="xodex"
+
+  PASSWORD=$(whiptail --title "XODEX OC — Вход" --passwordbox "Пароль:" 8 50 3>&1 1>&2 2>&3) || continue
+
+  if [ "${PASSWORD}" != "xodex" ]; then
+    attempt=$((attempt + 1))
+    remaining=$((MAX_ATTEMPTS - attempt))
+    whiptail --title "Ошибка" --msgbox "  Неверный пароль.
+
+  Подсказка: пользователь = xodex  пароль = xodex
+
+  Осталось попыток: ${remaining}" 12 50
+    continue
+  fi
+
+  break
+done
+
+if [ "${attempt}" -ge "${MAX_ATTEMPTS}" ]; then
+  clear
+  echo "  Превышено число попыток. Перезагрузка через 5 секунд..."
+  sleep 5
+  sudo reboot
+  exit 1
+fi
+
+LANG=$(whiptail --title "XODEX OC — Язык" --radiolist "Выберите язык:" 12 50 2 \
+  "ru" "Русский" ON \
+  "en" "English" OFF 3>&1 1>&2 2>&3) || true
+[ -z "${LANG}" ] && LANG="ru"
+
+mkdir -p "${HOME}/.xodex"
+python3 -c "
+import json, os
+p = os.path.expanduser('~/.xodex/progress.json')
+try:
+    d = json.load(open(p))
+except:
+    d = {'username': '${USERNAME}', 'bookmarks': {}, 'lessons_completed': [], 'settings': {'theme': 'dark'}}
+d['language'] = '${LANG}'
+json.dump(d, open(p, 'w'), indent=2, ensure_ascii=False)
+"
+
+clear
+echo "  XODEX OC — загрузка..."
+sleep 0.5

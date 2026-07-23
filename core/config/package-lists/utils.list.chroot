@@ -18,6 +18,9 @@ tree
 # Text browser (online docs via links.json)
 w3m
 
+# TUI dialogs for login screen and desktop menu
+whiptail
+
 # Modern-ish CLI helpers available in Debian
 fzf
 ripgrep
@@ -27,3 +30,17 @@ jq
 # Fonts for readable console (Terminus)
 console-setup
 fonts-terminus
+
+# Development tools
+build-essential
+gcc
+python3
+nasm
+sqlite3
+
+# Pager (xodex-docs depends on it)
+less
+
+# Russian locale support
+locales
+aspell-ru

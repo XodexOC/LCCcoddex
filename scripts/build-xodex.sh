@@ -63,9 +63,10 @@ prepare_workspace() {
     --iso-publisher "XodexOC https://github.com/XodexOC/XodexOC" \
     --iso-volume "XODEX" \
     --security false \
-    --bootappend-live "boot=live components hostname=xodex username=xodex locales=ru_RU.UTF-8,en_US.UTF-8 keyboard-layouts=us,ru timezone=UTC" \
+    --bootappend-live "boot=live components hostname=xodex username=xodex locales=ru_RU.UTF-8,en_US.UTF-8 keyboard-layouts=us,ru timezone=UTC console=ttyS0,115200" \
     --binary-images iso-hybrid \
-    --win32-loader false
+    --win32-loader false \
+    --initsystem systemd
 }
 
 sync_config() {
@@ -91,18 +92,65 @@ SECEOF
   local XDEST="config/includes.chroot/usr/local/xodex"
   mkdir -p "${XDEST}" config/includes.chroot/usr/local/bin
 
-  rsync -a --delete \
-    --exclude '.git' \
-    "${ROOT}/docs/" "${XDEST}/docs/" 2>/dev/null || cp -a "${ROOT}/docs" "${XDEST}/"
-  rsync -a --delete \
-    "${ROOT}/examples/" "${XDEST}/examples/" 2>/dev/null || cp -a "${ROOT}/examples" "${XDEST}/"
-  rsync -a --delete \
-    "${ROOT}/courses/" "${XDEST}/courses/" 2>/dev/null || cp -a "${ROOT}/courses" "${XDEST}/"
-  rsync -a --delete \
-    "${ROOT}/tools/" "${XDEST}/tools/" 2>/dev/null || cp -a "${ROOT}/tools" "${XDEST}/"
+  for subdir in docs examples courses tools; do
+    local src="${ROOT}/${subdir}"
+    if [ -d "${src}" ]; then
+      rm -rf "${XDEST}/${subdir}"
+      cp -a "${src}" "${XDEST}/"
+    fi
+  done
 
-  # Menu on PATH
+  # Session / Login / Menu on PATH
+  install -m 0755 "${ROOT}/tools/xodex-session" config/includes.chroot/usr/local/bin/xodex-session
+  install -m 0755 "${ROOT}/tools/xodex-login" config/includes.chroot/usr/local/bin/xodex-login
   install -m 0755 "${ROOT}/tools/xodex-menu" config/includes.chroot/usr/local/bin/xodex-menu
+
+  # Copy syslinux bootloader templates
+  local ISOLINUX_TMPL="/usr/share/live/build/bootloaders/isolinux"
+  if [ -d "${ISOLINUX_TMPL}" ]; then
+    mkdir -p config/bootloaders/isolinux
+    cp -a "${ISOLINUX_TMPL}/." config/bootloaders/isolinux/
+    # Remove splash.svg.in so lb_binary_syslinux doesn't try to process it
+    rm -f config/bootloaders/isolinux/splash.svg.in
+    # Create bootlogo placeholder (small cpio archive)
+    mkdir -p /tmp/xodex-bootlogo
+    echo "xodex" > /tmp/xodex-bootlogo/placeholder
+    (cd /tmp/xodex-bootlogo && echo "placeholder" | cpio -o > "${BUILD_DIR}/config/bootloaders/isolinux/bootlogo" 2>/dev/null) || true
+    rm -rf /tmp/xodex-bootlogo
+  fi
+
+  # Copy syslinux library modules required by isolinux 6.x
+  local SYS_MODULES="/usr/lib/syslinux/modules/bios"
+  if [ -d "${SYS_MODULES}" ]; then
+    for mod in ldlinux.c32 libcom32.c32 libutil.c32 libmenu.c32 menu.c32; do
+      if [ -f "${SYS_MODULES}/${mod}" ]; then
+        install -m 0644 "${SYS_MODULES}/${mod}" config/bootloaders/isolinux/
+      fi
+    done
+  fi
+
+  # Custom isolinux.cfg — use text menu.c32 instead of vesamenu.c32
+  cat > config/bootloaders/isolinux/isolinux.cfg << 'ISOLINUXCFG'
+include menu.cfg
+default menu.c32
+prompt 0
+timeout 50
+ISOLINUXCFG
+
+  # Custom live.cfg.in — without hardcoded 'boot=live config' (already in @LB_BOOTAPPEND_LIVE@)
+  cat > config/bootloaders/isolinux/live.cfg.in << 'LIVECFG'
+label live-@FLAVOUR@
+	menu label ^Live (@FLAVOUR@)
+	menu default
+	kernel @KERNEL@
+	append initrd=@INITRD@ @LB_BOOTAPPEND_LIVE@
+
+label live-@FLAVOUR@-failsafe
+	menu label ^Live (@FLAVOUR@ failsafe)
+	menu default
+	kernel @KERNEL@
+	append initrd=@INITRD@ @LB_BOOTAPPEND_LIVE@ @LB_BOOTAPPEND_FAILSAFE@
+LIVECFG
 
   # Copy short README into image
   install -m 0644 "${ROOT}/README.md" "${XDEST}/README.md"
@@ -112,9 +160,23 @@ SECEOF
 build_image() {
   info "lb build (this can take a long time)"
   cd "${BUILD_DIR}"
-  lb build
-  info "Build finished. Look for ISO under ${BUILD_DIR}/"
-  ls -lh "${BUILD_DIR}/"*.iso 2>/dev/null || ls -lh "${BUILD_DIR}/" | head -50
+  lb build || true
+
+  # The ISO is built inside chroot; find and hybridize it
+  local ISO_SRC=""
+  ISO_SRC=$(find "${BUILD_DIR}/chroot" -maxdepth 1 -name "*.hybrid.iso" -type f 2>/dev/null | head -1)
+  if [ -n "${ISO_SRC}" ] && [ -f "${ISO_SRC}" ]; then
+    info "Applying isohybrid to: ${ISO_SRC}"
+    isohybrid "${ISO_SRC}" 2>/dev/null || true
+    local ISO_DEST="${BUILD_DIR}/${IMAGE_NAME}-${ARCH}.iso"
+    cp "${ISO_SRC}" "${ISO_DEST}"
+    chmod 644 "${ISO_DEST}"
+    info "ISO: ${ISO_DEST}"
+    ls -lh "${ISO_DEST}"
+  else
+    info "Looking for ISO in binary/..."
+    ls -lh "${BUILD_DIR}/"*.iso 2>/dev/null || ls -lh "${BUILD_DIR}/" | head -30
+  fi
 }
 
 usage() {
